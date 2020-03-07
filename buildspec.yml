@@ -19,4 +19,4 @@ artifacts:
   files:
     - build/libs/marketplace-0.0.1-SNAPSHOT.war
     - appspec.yml
-    - scripts/
+    - scripts/*
