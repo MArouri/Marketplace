@@ -7,6 +7,9 @@ INSTANCE_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identit
 ENVIRONMENT=$(aws ec2 describe-tags --filters "Name=resource-id,Values=${INSTANCE_ID}" "Name=key,Values=Environment" --region=${INSTANCE_REGION} --output=text | cut -f5)
 NAME=$(aws ec2 describe-tags --filters "Name=resource-id,Values=${INSTANCE_ID}" "Name=key,Values=Name" --region us-east-1 --output text --query "Tags[*].Value")
 
+# Install java
+sudo yum install java-11-amazon-corretto-headless
+
 # Install updates and dependencies
 amazon-linux-extras install -y epel
 yum -y update
