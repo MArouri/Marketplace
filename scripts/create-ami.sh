@@ -8,7 +8,7 @@ ENVIRONMENT=$(aws ec2 describe-tags --filters "Name=resource-id,Values=${INSTANC
 NAME=$(aws ec2 describe-tags --filters "Name=resource-id,Values=${INSTANCE_ID}" "Name=key,Values=Name" --region us-east-1 --output text --query "Tags[*].Value")
 
 # Install java
-sudo yum install java-11-amazon-corretto-headless
+sudo yum -y install java-11-amazon-corretto-headless
 
 # Install updates and dependencies
 amazon-linux-extras install -y epel
