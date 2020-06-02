@@ -26,7 +26,7 @@ public class AwsCognitoJwtAuthFilter extends GenericFilter {
 
         SecurityContextHolder.clearContext();
         try {
-            authentication = this.cognitoIdTokenProcessor.authenticate((HttpServletRequest)request);
+            authentication = this.cognitoIdTokenProcessor.authenticate((HttpServletRequest) request);
             if (authentication != null) {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }

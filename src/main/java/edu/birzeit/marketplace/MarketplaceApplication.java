@@ -19,7 +19,6 @@ import java.net.URL;
 
 import static com.nimbusds.jose.JWSAlgorithm.RS256;
 
-//@EnableResourceServer
 @SpringBootApplication
 public class MarketplaceApplication {
 
