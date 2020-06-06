@@ -42,5 +42,4 @@ public class MarketplaceApplication {
         jwtProcessor.setJWSKeySelector(keySelector);
         return jwtProcessor;
     }
-
 }

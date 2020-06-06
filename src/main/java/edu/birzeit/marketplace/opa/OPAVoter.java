@@ -1,15 +1,14 @@
 package edu.birzeit.marketplace.opa;
 
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
+import edu.birzeit.marketplace.util.GenericUtil;
 import org.springframework.http.HttpEntity;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,20 +49,33 @@ public class OPAVoter implements AccessDecisionVoter<Object> {
         }
 
         FilterInvocation filter = (FilterInvocation) obj;
-        Map<String, String> headers = new HashMap<String, String>();
 
-        for (Enumeration<String> headerNames = filter.getRequest().getHeaderNames(); headerNames.hasMoreElements();) {
-            String header = headerNames.nextElement();
-            headers.put(header, filter.getRequest().getHeader(header));
-        }
-
-        String[] path = filter.getRequest().getRequestURI().replaceAll("^/|/$", "").split("/");
-
+        // Construct an input for OPA
         Map<String, Object> input = new HashMap<String, Object>();
-        input.put("auth", authentication);
+
+        // Construct url generic path and request meta
+        String[] path = filter.getRequest().getRequestURI().replaceAll("^/|/$", "").split("/");
+        String genericPath = "";
+        Map<String, Object> requestMeta = new HashMap<String, Object>();
+        for (int i=0; i<path.length; i++){
+
+            if (GenericUtil.isNumeric(path[i])){
+                String variable= (path[i-1] + "_id");
+                genericPath += variable;
+                requestMeta.put(variable, Integer.valueOf(path[i]));
+            }else {
+                genericPath += path[i];
+            }
+            genericPath += "/";
+        }
+        input.put("request_meta", requestMeta);
+        input.put("url", genericPath);
+        System.out.println("genericPath " + genericPath);
+
         input.put("method", filter.getRequest().getMethod());
-        input.put("path", path);
-        input.put("headers", headers);
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        input.put("username", userDetails.getUsername());
 
         RestTemplate client = new RestTemplate();
         HttpEntity<?> request = new HttpEntity<>(new OPADataRequest(input));
@@ -75,5 +87,4 @@ public class OPAVoter implements AccessDecisionVoter<Object> {
 
         return ACCESS_GRANTED;
     }
-
 }
