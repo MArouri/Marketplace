@@ -12,7 +12,9 @@ import edu.birzeit.marketplace.security.JwtConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,6 +22,8 @@ import java.net.URL;
 import static com.nimbusds.jose.JWSAlgorithm.RS256;
 
 @SpringBootApplication
+@EnableCaching
+@EnableScheduling
 public class MarketplaceApplication {
 
     public static void main(String[] args) {

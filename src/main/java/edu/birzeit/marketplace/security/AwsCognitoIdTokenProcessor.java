@@ -25,6 +25,9 @@ public class AwsCognitoIdTokenProcessor {
     private ConfigurableJWTProcessor configurableJWTProcessor;
 
     public Authentication authenticate(HttpServletRequest request) throws Exception {
+
+        System.out.println("In cognito authenticate .....");
+
         String idToken = request.getHeader(this.jwtConfiguration.getHttpHeader());
         if (idToken != null) {
             JWTClaimsSet claims = this.configurableJWTProcessor.process(this.getBearerToken(idToken),null);
