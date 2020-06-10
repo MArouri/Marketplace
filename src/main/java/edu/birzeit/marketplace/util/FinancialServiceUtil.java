@@ -36,6 +36,7 @@ public class FinancialServiceUtil {
         headers.setBearerAuth(this.financialCognitoHelper.getAccessToken());
 
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+        System.out.println("Financial uri: " + uri);
         ResponseEntity<Subscription[]> result = restTemplate.exchange(uri, HttpMethod.GET, entity, Subscription[].class);
         System.out.println(result);
 
