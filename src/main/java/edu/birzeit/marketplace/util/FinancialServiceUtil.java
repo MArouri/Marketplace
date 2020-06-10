@@ -29,7 +29,7 @@ public class FinancialServiceUtil {
 
     public Subscription[] getActiveSubscriptions(Long businessId){
 
-        final String uri = protocol + "://" + baseUrl + ":" + port + "/financial/businesses/" + businessId +"/subscriptions";
+        final String uri = protocol + "://" + baseUrl + "/financial/businesses/" + businessId +"/subscriptions";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
