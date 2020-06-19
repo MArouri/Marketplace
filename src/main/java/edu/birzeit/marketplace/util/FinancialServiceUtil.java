@@ -21,19 +21,12 @@ public class FinancialServiceUtil {
     @Value("${edu.birzeit.financial.port}")
     private int port;
 
-    private FinancialCognitoHelper financialCognitoHelper;
-
-    public FinancialServiceUtil(@Autowired FinancialCognitoHelper financialCognitoHelper){
-        this.financialCognitoHelper = financialCognitoHelper;
-    }
-
     public Subscription[] getActiveSubscriptions(Long businessId){
 
         final String uri = protocol + "://" + baseUrl + "/financial/businesses/" + businessId +"/subscriptions";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth(this.financialCognitoHelper.getAccessToken());
 
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         System.out.println("Financial uri: " + uri);
