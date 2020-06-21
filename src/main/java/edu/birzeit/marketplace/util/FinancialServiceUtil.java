@@ -18,9 +18,6 @@ public class FinancialServiceUtil {
     @Value("${edu.birzeit.financial.base_url}")
     private String baseUrl;
 
-    @Value("${edu.birzeit.financial.port}")
-    private int port;
-
     public Subscription[] getActiveSubscriptions(Long businessId){
 
         final String uri = protocol + "://" + baseUrl + "/financial/businesses/" + businessId +"/subscriptions";

@@ -1,9 +1,7 @@
 edu:
   birzeit:
     financial:
-      #      protocol: "http"
-      #      base_url : "localhost"
-      #      port : "8081"
+      #protocol: "http"
+      #base_url : "localhost:8081"
       protocol: "https"
       base_url : "edn9bq9hv6.execute-api.us-east-1.amazonaws.com/default"
-      port : "443"
