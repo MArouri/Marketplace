@@ -14,7 +14,7 @@ public class CachingController {
         this.cacheManager = cacheManager;
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 30000)
     public void clearCache() {
         System.out.println("clearCache called");
         this.cacheManager.getCache("accessToken").clear();

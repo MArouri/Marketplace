@@ -42,7 +42,6 @@ public class BusinessController {
 
     @RequestMapping(value = {"/jobs"}, method = RequestMethod.POST)
     public Job createJob(@PathVariable Long businessId){
-
         return new Job();
     }
 
