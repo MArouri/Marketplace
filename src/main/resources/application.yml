@@ -3,14 +3,14 @@ edu:
     marketplace:
       userPoolId: "us-east-1_rT2RHbx6Y"
       region: "us-east-1"
-      pjwkUrl: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_rT2RHbx6Y/.well-known/jwks.json"
+      pjwkUrl: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_2RHbx6Y/.well-known/jwks.json"
     financial:
       #      protocol: "http"
       #      base_url : "localhost"
       #      port : "8081"
       protocol: "https"
-      base_url : "edn9bq9hv6.execute-api.us-east-1.amazonaws.com/default"
+      base_url : "n9bq9hv6.execute-api.us-east-1.amazonaws.com/default"
       port : "443"
-      client_id: "14sucp1lo5lufrp12ikpolmu04"
-      client_secret: "81mp5tbpd9g9lvo21rsrc7it2eaefqlkmc0kq8lg97mvjpaq1tg"
+      client_id: "sucp1lo5lufrp12ikpolmu04"
+      client_secret: "mp5tbpd9g9lvo21rsrc7it2eaefqlkmc0kq8lg97mvjpaq1tg"
       end_point: "https://applicant-tracking-financial.auth.us-east-1.amazoncognito.com/oauth2/token"
